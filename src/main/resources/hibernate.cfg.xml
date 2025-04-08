@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Configuration de la base de données -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/cucus?allowPublicKeyRetrieval=true&amp;useSSL=false</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">xeon</property>
+
+        <!-- Paramètres Hibernate -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        <!-- Pour Hibernate 6+ -->
+        <property name="hibernate.jdbc.time_zone">UTC</property>
+        <property name="hibernate.connection.provider_disables_autocommit">true</property>
+        
+        <mapping class="com.hib.model.Medecin"/>
+        <mapping class="com.hib.model.Patient"/>
+        <mapping class="com.hib.model.Visiter"/>
+    </session-factory>
+</hibernate-configuration>
