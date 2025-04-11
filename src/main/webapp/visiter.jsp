@@ -20,13 +20,7 @@
                 <form action="visites" method="get"
                     class="bg-white p-4 rounded shadow mb-6 flex flex-col md:flex-row items-center gap-4">
                     <input type="hidden" name="action" value="search">
-                    <select name="searchType" class="border rounded p-2">
-                        <option value="code">Code</option>
-                        <option value="medecin">Médecin</option>
-                        <option value="patient">Patient</option>
-                    </select>
-                    <input type="text" name="searchValue" required class="border rounded p-2 flex-grow"
-                        placeholder="Valeur de recherche">
+					<input type="text" name="searchValue" required class="border rounded p-2 flex-grow" placeholder="Rechercher (code, médecin, patient)">
                     <button type="submit"
                         class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
                     <a href="visites" class="text-blue-600 hover:underline">Afficher tous</a>

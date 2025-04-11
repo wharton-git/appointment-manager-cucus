@@ -11,18 +11,13 @@
             <h1 class="text-3xl font-bold mb-6 text-center">Gestion des Médecins</h1>
 
             <!-- Formulaire de recherche -->
-            <form action="medecins" method="get" class="flex flex-wrap items-center gap-2 mb-6">
-                <input type="hidden" name="action" value="search">
-                <select name="searchType" class="border border-gray-300 rounded px-3 py-2">
-                    <option value="code">Code</option>
-                    <option value="nom">Nom</option>
-                    <option value="prenom">Prénom</option>
-                </select>
-                <input type="text" name="searchValue" required class="border border-gray-300 rounded px-3 py-2">
-                <button type="submit"
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Rechercher</button>
-                <a href="medecins" class="text-blue-600 hover:underline ml-2">Afficher tous</a>
-            </form>
+<form action="medecins" method="get" class="flex flex-wrap items-center gap-2 mb-6">
+    <input type="hidden" name="action" value="search">
+    <input type="text" name="searchValue" required class="border border-gray-300 rounded px-3 py-2" placeholder="Rechercher...">
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Rechercher</button>
+    <a href="medecins" class="text-blue-600 hover:underline ml-2">Afficher tous</a>
+</form>
+
 
             <!-- Formulaire d'ajout/modification -->
             <h2 class="text-xl font-semibold mb-4">

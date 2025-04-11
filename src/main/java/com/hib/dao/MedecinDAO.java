@@ -76,4 +76,13 @@ public class MedecinDAO {
             return session.createQuery("FROM Medecin", Medecin.class).list();
         }
     }
+    public List<Medecin> searchMedecinsGlobally(String keyword) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Medecin> query = session.createQuery(
+                "FROM Medecin WHERE codeMed LIKE :kw OR nom LIKE :kw OR prenom LIKE :kw", Medecin.class);
+            query.setParameter("kw", "%" + keyword + "%");
+            return query.list();
+        }
+    }
+
 }

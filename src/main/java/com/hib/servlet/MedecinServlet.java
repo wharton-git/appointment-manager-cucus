@@ -47,16 +47,14 @@ public class MedecinServlet extends HttpServlet {
         
         try {
             if ("search".equals(action)) {
-                String searchType = request.getParameter("searchType");
-                String searchValue = request.getParameter("searchValue");
                 
-                if ("code".equals(searchType)) {
-                    request.setAttribute("medecin", medecinDAO.findMedecinByCode(searchValue));
-                } else if ("nom".equals(searchType)) {
-                    request.setAttribute("medecins", medecinDAO.findMedecinsByName(searchValue));
-                } else {
-                    request.setAttribute("medecins", medecinDAO.findMedecinsByPrenom(searchValue));
+                if ("search".equals(action)) {
+                    String keyword = request.getParameter("searchValue");
+                    request.setAttribute("medecins", medecinDAO.searchMedecinsGlobally(keyword));
+                } else if ("edit".equals(action)) {
+                    request.setAttribute("medecin", medecinDAO.findMedecinByCode(request.getParameter("codeMed")));
                 }
+
             } else if ("edit".equals(action)) {
                 request.setAttribute("medecin", medecinDAO.findMedecinByCode(request.getParameter("codeMed")));
             }

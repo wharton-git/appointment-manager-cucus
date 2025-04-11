@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @WebServlet("/visites")
 public class VisiterServlet extends HttpServlet {
@@ -52,6 +53,11 @@ public class VisiterServlet extends HttpServlet {
                     visiterDAO.updateVisite(visite);
                 }
             }
+            if ("delete".equals(action)) {
+                int codeVis = Integer.parseInt(request.getParameter("codeVis"));
+                visiterDAO.deleteVisite(codeVis);
+            }
+
         } catch (Exception e) {
             request.setAttribute("error", "Erreur lors de l'opération: " + e.getMessage());
         }
@@ -63,19 +69,13 @@ public class VisiterServlet extends HttpServlet {
         String action = request.getParameter("action");
         
         try {
-            if ("search".equals(action)) {
-                String searchType = request.getParameter("searchType");
-                String searchValue = request.getParameter("searchValue");
-                
-                if ("code".equals(searchType)) {
-                    int codeVis = Integer.parseInt(searchValue);
-                    request.setAttribute("visite", visiterDAO.findVisiteByCode(codeVis));
-                } else if ("medecin".equals(searchType)) {
-                    request.setAttribute("visites", visiterDAO.findVisitesByMedecinName(searchValue));
-                } else {
-                    request.setAttribute("visites", visiterDAO.findVisitesByPatientName(searchValue));
-                }
-            } else if ("edit".equals(action)) {
+        	if ("search".equals(action)) {
+        	    String searchValue = request.getParameter("searchValue");
+        	    List<Visiter> resultats = visiterDAO.searchVisitesGlobally(searchValue);
+        	    request.setAttribute("visites", resultats);
+        	}
+
+             else if ("edit".equals(action)) {
                 int codeVis = Integer.parseInt(request.getParameter("codeVis"));
                 request.setAttribute("visite", visiterDAO.findVisiteByCode(codeVis));
             }

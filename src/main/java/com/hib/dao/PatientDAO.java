@@ -76,4 +76,18 @@ public class PatientDAO {
             return session.createQuery("FROM Patient", Patient.class).list();
         }
     }
+    
+    public List<Patient> findPatientsByKeyword(String keyword) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Patient> query = session.createQuery(
+                "FROM Patient WHERE " +
+                "CAST(codePat AS string) LIKE :kw OR " +
+                "LOWER(nom) LIKE :kw OR " +
+                "LOWER(prenom) LIKE :kw OR " +
+                "LOWER(adresse) LIKE :kw", Patient.class);
+            query.setParameter("kw", "%" + keyword.toLowerCase() + "%");
+            return query.list();
+        }
+    }
+
 }

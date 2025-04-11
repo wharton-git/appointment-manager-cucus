@@ -76,4 +76,24 @@ public class VisiterDAO {
             return session.createQuery("FROM Visiter", Visiter.class).list();
         }
     }
+    
+    public List<Visiter> searchVisitesGlobally(String keyword) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = """
+                FROM Visiter v 
+                WHERE 
+                    cast(v.codeVis as string) like :kw 
+                    OR lower(v.medecin.nom) like :kw 
+                    OR lower(v.medecin.prenom) like :kw
+                    OR lower(v.patient.nom) like :kw 
+                    OR lower(v.patient.prenom) like :kw
+            """;
+
+            Query<Visiter> query = session.createQuery(hql, Visiter.class);
+            query.setParameter("kw", "%" + keyword.toLowerCase() + "%");
+
+            return query.list();
+        }
+    }
+
 }

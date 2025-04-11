@@ -10,20 +10,15 @@
         <body class="bg-gray-100 text-gray-800 p-6">
             <h1 class="text-3xl font-bold mb-6 text-center">Gestion des Patients</h1>
 
-            <!-- Formulaire de recherche -->
-            <form action="patients" method="get" class="flex flex-wrap items-center gap-4 mb-6">
-                <input type="hidden" name="action" value="search">
-                <select name="searchType" class="border rounded px-3 py-2">
-                    <option value="code">Code</option>
-                    <option value="nom">Nom</option>
-                    <option value="prenom">Prénom</option>
-                </select>
-                <input type="text" name="searchValue" required class="border rounded px-3 py-2 flex-1"
-                    placeholder="Rechercher...">
-                <button type="submit"
-                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
-                <a href="patients" class="text-blue-600 hover:underline">Afficher tous</a>
-            </form>
+            <!-- Formulaire de recherche (recherche globale) -->
+			<form action="patients" method="get" class="flex flex-wrap items-center gap-4 mb-6">
+			    <input type="hidden" name="action" value="search">
+			    <input type="text" name="searchValue" required class="border rounded px-3 py-2 flex-1"
+			        placeholder="Rechercher un patient...">
+			    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
+			    <a href="patients" class="text-blue-600 hover:underline">Afficher tous</a>
+			</form>
+
 
             <!-- Formulaire d'ajout/modification -->
             <div class="bg-white p-6 rounded shadow mb-8">
@@ -44,12 +39,12 @@
                             class="border rounded px-3 py-2 w-full">
                     </div>
                     <div>
-                        <label class="block font-medium">Sexe:</label>
-                        <select name="sexe" class="border rounded px-3 py-2 w-full">
-                            <option value="M" ${patient.sexe=='M' ? 'selected' : '' }>Masculin</option>
-                            <option value="F" ${patient.sexe=='F' ? 'selected' : '' }>Féminin</option>
-                        </select>
-                    </div>
+					    <label class="block font-medium">Sexe:</label>
+					    <select name="sexe" class="border rounded px-3 py-2 w-full">
+					        <option value="M" ${patient.sexe.toString().equals("M") ? 'selected' : ''}>Masculin</option>
+					        <option value="F" ${patient.sexe.toString().equals("F") ? 'selected' : ''}>Féminin</option>
+					    </select>
+					</div>
                     <div>
                         <label class="block font-medium">Adresse:</label>
                         <input type="text" name="adresse" value="${patient.adresse}"

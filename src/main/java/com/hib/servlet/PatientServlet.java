@@ -49,18 +49,10 @@ public class PatientServlet extends HttpServlet {
         String action = request.getParameter("action");
         
         try {
-            if ("search".equals(action)) {
-                String searchType = request.getParameter("searchType");
-                String searchValue = request.getParameter("searchValue");
-                
-                if ("code".equals(searchType)) {
-                    Integer codePat = Integer.parseInt(searchValue);
-                    request.setAttribute("patient", patientDAO.findPatientById(codePat));
-                } else if ("nom".equals(searchType)) {
-                    request.setAttribute("patients", patientDAO.findPatientsByName(searchValue));
-                } else {
-                    request.setAttribute("patients", patientDAO.findPatientsByPrenom(searchValue));
-                }
+        	if ("search".equals(action)) {
+        	    String keyword = request.getParameter("searchValue");
+        	    request.setAttribute("patients", patientDAO.findPatientsByKeyword(keyword));
+        	
             } else if ("edit".equals(action)) {
                 Integer codePat = Integer.parseInt(request.getParameter("codePat"));
                 request.setAttribute("patient", patientDAO.findPatientById(codePat));
