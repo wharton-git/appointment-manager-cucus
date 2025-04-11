@@ -11,14 +11,14 @@
             <h1 class="text-3xl font-bold mb-6 text-center">Gestion des Patients</h1>
 
             <!-- Formulaire de recherche (recherche globale) -->
-			<form action="patients" method="get" class="flex flex-wrap items-center gap-4 mb-6">
-			    <input type="hidden" name="action" value="search">
-			    <input type="text" name="searchValue" required class="border rounded px-3 py-2 flex-1"
-			        placeholder="Rechercher un patient...">
-			    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
-			    <a href="patients" class="text-blue-600 hover:underline">Afficher tous</a>
-			</form>
-
+            <form action="patients" method="get" class="flex flex-wrap items-center gap-4 mb-6">
+                <input type="hidden" name="action" value="search">
+                <input type="text" name="searchValue" required class="border rounded px-3 py-2 flex-1"
+                    placeholder="Rechercher un patient...">
+                <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
+                <a href="patients" class="text-blue-600 hover:underline">Afficher tous</a>
+            </form>
 
             <!-- Formulaire d'ajout/modification -->
             <div class="bg-white p-6 rounded shadow mb-8">
@@ -28,29 +28,33 @@
                     <c:if test="${not empty patient.codePat}">
                         <input type="hidden" name="codePat" value="${patient.codePat}">
                     </c:if>
-                    <div>
-                        <label class="block font-medium">Nom:</label>
-                        <input type="text" name="nom" value="${patient.nom}" required
-                            class="border rounded px-3 py-2 w-full">
-                    </div>
-                    <div>
-                        <label class="block font-medium">Prénom:</label>
-                        <input type="text" name="prenom" value="${patient.prenom}" required
-                            class="border rounded px-3 py-2 w-full">
-                    </div>
-                    <div>
-					    <label class="block font-medium">Sexe:</label>
-					    <select name="sexe" class="border rounded px-3 py-2 w-full">
-					        <option value="M" ${patient.sexe.toString().equals("M") ? 'selected' : ''}>Masculin</option>
-					        <option value="F" ${patient.sexe.toString().equals("F") ? 'selected' : ''}>Féminin</option>
-					    </select>
-					</div>
-                    <div>
-                        <label class="block font-medium">Adresse:</label>
-                        <input type="text" name="adresse" value="${patient.adresse}"
-                            class="border rounded px-3 py-2 w-full">
-                    </div>
                     <div class="flex items-center gap-4">
+                        <div>
+                            <label class="block font-medium">Nom:</label>
+                            <input type="text" name="nom" value="${patient.nom}" required
+                                class="border rounded px-3 py-2 w-full">
+                        </div>
+                        <div>
+                            <label class="block font-medium">Prénom:</label>
+                            <input type="text" name="prenom" value="${patient.prenom}" required
+                                class="border rounded px-3 py-2 w-full">
+                        </div>
+                        <div>
+                            <label class="block font-medium">Sexe:</label>
+                            <select name="sexe" class="border rounded px-3 py-2 w-full">
+                                <option value="M" ${patient.sexe.toString().equals("M") ? 'selected' : '' }>Masculin
+                                </option>
+                                <option value="F" ${patient.sexe.toString().equals("F") ? 'selected' : '' }>Féminin
+                                </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-medium">Adresse:</label>
+                            <input type="text" name="adresse" value="${patient.adresse}"
+                                class="border rounded px-3 py-2 w-full">
+                        </div>
+                    </div>
+                    <div class="my-4 flex items-center gap-4">
                         <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
                             ${empty patient.codePat ? 'Ajouter' : 'Modifier'}
                         </button>

@@ -20,7 +20,8 @@
                 <form action="visites" method="get"
                     class="bg-white p-4 rounded shadow mb-6 flex flex-col md:flex-row items-center gap-4">
                     <input type="hidden" name="action" value="search">
-					<input type="text" name="searchValue" required class="border rounded p-2 flex-grow" placeholder="Rechercher (code, médecin, patient)">
+                    <input type="text" name="searchValue" required class="border rounded p-2 flex-grow"
+                        placeholder="Rechercher (code, médecin, patient)">
                     <button type="submit"
                         class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Rechercher</button>
                     <a href="visites" class="text-blue-600 hover:underline">Afficher tous</a>
@@ -37,39 +38,41 @@
                             <input type="hidden" name="codeVis" value="${visite.codeVis}">
                             <p class="text-gray-700">Code visite : <strong>${visite.codeVis}</strong></p>
                         </c:if>
-
-                        <div>
-                            <label class="block mb-1 font-medium">Médecin:</label>
-                            <select name="codeMed" required class="w-full border p-2 rounded">
-                                <c:forEach items="${medecins}" var="m">
-                                    <option value="${m.codeMed}" ${not empty visite.medecin &&
-                                        visite.medecin.codeMed==m.codeMed ? 'selected' : '' }>
-                                        ${m.nom} ${m.prenom}
-                                    </option>
-                                </c:forEach>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block mb-1 font-medium">Patient:</label>
-                            <select name="codePat" required class="w-full border p-2 rounded">
-                                <c:forEach items="${patients}" var="p">
-                                    <option value="${p.codePat}" ${not empty visite.patient &&
-                                        visite.patient.codePat==p.codePat ? 'selected' : '' }>
-                                        ${p.nom} ${p.prenom}
-                                    </option>
-                                </c:forEach>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block mb-1 font-medium">Date:</label>
-                            <input type="date" name="date"
-                                value="<fmt:formatDate value='${visite.date}' pattern='yyyy-MM-dd'/>"
-                                class="w-full border p-2 rounded" required>
-                        </div>
-
                         <div class="flex items-center gap-4">
+
+                            <div>
+                                <label class="block mb-1 font-medium">Médecin:</label>
+                                <select name="codeMed" required class="w-full border p-2 rounded">
+                                    <c:forEach items="${medecins}" var="m">
+                                        <option value="${m.codeMed}" ${not empty visite.medecin &&
+                                            visite.medecin.codeMed==m.codeMed ? 'selected' : '' }>
+                                            ${m.nom} ${m.prenom}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block mb-1 font-medium">Patient:</label>
+                                <select name="codePat" required class="w-full border p-2 rounded">
+                                    <c:forEach items="${patients}" var="p">
+                                        <option value="${p.codePat}" ${not empty visite.patient &&
+                                            visite.patient.codePat==p.codePat ? 'selected' : '' }>
+                                            ${p.nom} ${p.prenom}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block mb-1 font-medium">Date:</label>
+                                <input type="date" name="date"
+                                    value="<fmt:formatDate value='${visite.date}' pattern='yyyy-MM-dd'/>"
+                                    class="w-full border p-2 rounded" required>
+                            </div>
+                        </div>
+
+                        <div class="my-4 flex items-center gap-4">
                             <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
                                 ${empty visite.codeVis ? 'Ajouter' : 'Modifier'}
                             </button>

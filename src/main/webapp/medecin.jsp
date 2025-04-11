@@ -11,44 +11,48 @@
             <h1 class="text-3xl font-bold mb-6 text-center">Gestion des Médecins</h1>
 
             <!-- Formulaire de recherche -->
-<form action="medecins" method="get" class="flex flex-wrap items-center gap-2 mb-6">
-    <input type="hidden" name="action" value="search">
-    <input type="text" name="searchValue" required class="border border-gray-300 rounded px-3 py-2" placeholder="Rechercher...">
-    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Rechercher</button>
-    <a href="medecins" class="text-blue-600 hover:underline ml-2">Afficher tous</a>
-</form>
+            <form action="medecins" method="get" class="flex flex-wrap items-center gap-2 mb-6">
+                <input type="hidden" name="action" value="search">
+                <input type="text" name="searchValue" required class="border border-gray-300 rounded px-3 py-2"
+                    placeholder="Rechercher...">
+                <button type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Rechercher</button>
+                <a href="medecins" class="text-blue-600 hover:underline ml-2">Afficher tous</a>
+            </form>
 
 
             <!-- Formulaire d'ajout/modification -->
             <h2 class="text-xl font-semibold mb-4">
                 ${empty medecin.codeMed ? 'Ajouter' : 'Modifier'} un médecin
             </h2>
-            <form action="medecins" method="post" class="space-y-4 mb-8">
+            <form action="medecins" method="post" class="">
                 <input type="hidden" name="action" value="${empty medecin.codeMed ? 'add' : 'update'}">
                 <c:if test="${not empty medecin.codeMed}">
                     <input type="hidden" name="codeMed" value="${medecin.codeMed}">
                 </c:if>
-                <c:if test="${empty medecin.codeMed}">
+                <div class="flex items-center gap-4 my-4">
+                    <c:if test="${empty medecin.codeMed}">
+                        <div>
+                            <label class="block font-medium">Code:</label>
+                            <input type="text" name="codeMed" required
+                                class="border border-gray-300 rounded px-3 py-2 w-full">
+                        </div>
+                    </c:if>
                     <div>
-                        <label class="block font-medium">Code:</label>
-                        <input type="text" name="codeMed" required
+                        <label class="block font-medium">Nom:</label>
+                        <input type="text" name="nom" value="${medecin.nom}" required
                             class="border border-gray-300 rounded px-3 py-2 w-full">
                     </div>
-                </c:if>
-                <div>
-                    <label class="block font-medium">Nom:</label>
-                    <input type="text" name="nom" value="${medecin.nom}" required
-                        class="border border-gray-300 rounded px-3 py-2 w-full">
-                </div>
-                <div>
-                    <label class="block font-medium">Prénom:</label>
-                    <input type="text" name="prenom" value="${medecin.prenom}" required
-                        class="border border-gray-300 rounded px-3 py-2 w-full">
-                </div>
-                <div>
-                    <label class="block font-medium">Grade:</label>
-                    <input type="text" name="grade" value="${medecin.grade}"
-                        class="border border-gray-300 rounded px-3 py-2 w-full">
+                    <div>
+                        <label class="block font-medium">Prénom:</label>
+                        <input type="text" name="prenom" value="${medecin.prenom}" required
+                            class="border border-gray-300 rounded px-3 py-2 w-full">
+                    </div>
+                    <div>
+                        <label class="block font-medium">Grade:</label>
+                        <input type="text" name="grade" value="${medecin.grade}"
+                            class="border border-gray-300 rounded px-3 py-2 w-full">
+                    </div>
                 </div>
                 <div class="flex gap-4 items-center">
                     <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
